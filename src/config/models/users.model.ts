@@ -3,7 +3,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database';
 
-class User extends Model {
+class Users extends Model {
   public id!: number;
   public username!: string;
   public nickname!: string;
@@ -11,12 +11,13 @@ class User extends Model {
   public email!: string;
 }
 
-User.init(
+Users.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
     },
     username: {
       type: DataTypes.STRING,
@@ -38,9 +39,19 @@ User.init(
   },
   {
     sequelize,
-    modelName: 'User',
-    tableName: 'user',
+    modelName: 'Users',
+    tableName: 'users',
   },
 );
 
-export default User;
+// async function syncModels() {
+//   try {
+//     // await Users.sync();
+//     await Users.sync({ force: true });
+//   } catch (error) {
+//     console.error('模型同步失败', error);
+//   }
+// }
+// syncModels();
+
+export default Users;
