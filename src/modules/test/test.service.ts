@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { sequelize } from '../../config/database';
-import User from '../../config/modules/user.model';
+import Users from '../../config/models/users.model';
 import { Op, Sequelize } from 'sequelize';
 
 @Injectable()
 export class TestService {
   private readonly cats: string[] = [];
   //   { currentPage = 1, pageSize = 10 } = {}
-  // const { count, rows: data } = await User.findAndCountAll({
+  // const { count, rows: data } = await Users.findAndCountAll({
   //   limit,
   //   offset,
   // });
-  // const user = await User.findOne({ where: { id: 1 }, logging: true });
+  // const user = await Users.findOne({ where: { id: 1 }, logging: true });
   // console.log('--user--', user);
   async findAll(params): Promise<object> {
     const currentPage = Number(params.currentPage || 1);
@@ -53,11 +53,11 @@ export class TestService {
     console.log('where:', where);
 
     const [data, totalCount] = await Promise.all([
-      User.findAll({ where, limit, offset }),
-      User.count({ where }),
+      Users.findAll({ where, limit, offset }),
+      Users.count({ where }),
     ]);
-    // const data = await User.findAll({ where, limit, offset });
-    // const totalCount = await User.count(); //数据总数
+    // const data = await Users.findAll({ where, limit, offset });
+    // const totalCount = await Users.count(); //数据总数
     const total = data.length;
     return {
       code: 200,
