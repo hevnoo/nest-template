@@ -10,12 +10,14 @@ export const sequelize = new Sequelize({
 });
 
 //同步所有模型字段
-async function syncModels() {
-  try {
-    // await Users.sync();
-    await sequelize.sync({ force: true });
-  } catch (error) {
-    console.error('模型同步失败', error);
-  }
-}
-syncModels();
+// async function syncModels() {
+//   try {
+//     // await Users.sync();
+//     await sequelize.sync({ force: true });
+//   } catch (error) {
+//     console.error('模型同步失败', error);
+//   }
+// }
+// syncModels();
+
+// { force: true } 参数将强制 Sequelize 删除现有的表（如果存在），然后重新创建它。
