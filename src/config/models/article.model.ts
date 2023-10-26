@@ -53,6 +53,15 @@ export class Article extends Model<Article> {
   public views!: number;
 }
 
+// async function syncModels() {
+//   try {
+//     await Article.sync({ force: true });
+//   } catch (error) {
+//     console.error('模型同步失败', error);
+//   }
+// }
+// syncModels();
+
 export default Article;
 
 /*
